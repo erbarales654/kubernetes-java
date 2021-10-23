@@ -26,9 +26,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.context.TestPropertySource;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@TestPropertySource(properties = {"myservice_color = purple","myservice_db_username = myuser", "myservice_db_password = mypassword"})
 public class GreetingControllerTests {
 
 	@Autowired
@@ -48,5 +50,12 @@ public class GreetingControllerTests {
 				.andDo(print()).andExpect(status().isOk())
 				.andExpect(jsonPath("$.content").value("Hello, Spring Community!"));
 	}
+
+	@Test
+	public void paramGreetingShouldEnvironmentVariables() throws Exception {
+
+		this.mockMvc.perform(get("/greeting")).andDo(print()).andExpect(status().isOk())
+				.andExpect(jsonPath("$.environment").exists());
+	}	
 
 }
