@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydeployment
+  labels:
+    app: my-java-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-java-app
+  template:
+    metadata:
+      labels:
+        app: my-java-app
+    spec:
+      containers:
+      - name: my-java-container
+        image: java-app:dev-local
+        envFrom:
+          - configMapRef:
+              name: myconfigmap
+          - secretRef:
+              name: mysecret
+        imagePullPolicy: Never #usar esto para docker desktop, de lo contrario intenta ir a docker.io
+        resources:
+          limits:
+            memory: 500M
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
