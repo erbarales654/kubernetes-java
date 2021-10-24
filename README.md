@@ -2,8 +2,8 @@
 Pruebas realizadas utilizando
 * Gradle 7.2
 * JDK 11.0.2
-* Docker Desktop 4.1.1
-  * Docker Engine 20.10.8
+* Rancher Desktop 0.6.0
+  * kim v0.1.0-beta.6
   * Kubernetes Server v1.21.5
 
 ## Compilar

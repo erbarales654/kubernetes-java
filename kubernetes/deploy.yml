@@ -31,7 +31,7 @@ spec:
               name: myconfigmap
           - secretRef:
               name: mysecret
-        imagePullPolicy: IfNotPresent #usar esto para docker desktop, de lo contrario intenta ir a docker.io
+        imagePullPolicy: IfNotPresent
         resources:
           limits:
             memory: 500M
