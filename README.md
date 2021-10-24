@@ -2,9 +2,10 @@
 Pruebas realizadas utilizando
 * Gradle 7.2
 * JDK 11.0.2
-* Docker Desktop 4.1.1
+* Minikube v1.23.2
   * Docker Engine 20.10.8
-  * Kubernetes Server v1.21.5
+  * Kubernetes Server v1.22.2
+* Docker CLI 19.03.12
 
 ## Compilar
 Ejecutar el siguiente comando

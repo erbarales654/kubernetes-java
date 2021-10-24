@@ -21,7 +21,7 @@ spec:
           path: /run/desktop/mnt/host/m/ecr/kubernetes-java/test-data/          
       containers:
       - name: my-java-container
-        image: java-app:dev-local
+        image: java-app:dev-local-minikube
         volumeMounts:
         - name: persistent-data
           mountPath: /var/lib/my-data/
