@@ -1,0 +1,8 @@
+bin/
+build/
+.git/
+.gradle/
+kubernetes/
+Dockerfile
+*.ps1
+README.md

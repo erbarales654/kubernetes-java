@@ -14,9 +14,17 @@ spec:
       labels:
         app: my-java-app
     spec:
+      volumes:
+      - name: persistent-data
+        hostPath:
+          # montando directorio local M:\ecr\kubernetes-java\test-data
+          path: /run/desktop/mnt/host/m/ecr/kubernetes-java/test-data/          
       containers:
       - name: my-java-container
         image: java-app:dev-local
+        volumeMounts:
+        - name: persistent-data
+          mountPath: /var/lib/my-data/
         envFrom:
           - configMapRef:
               name: myconfigmap
