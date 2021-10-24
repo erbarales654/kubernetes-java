@@ -18,10 +18,11 @@ spec:
       - name: persistent-data
         hostPath:
           # montando directorio local M:\ecr\kubernetes-java\test-data
-          path: /run/desktop/mnt/host/m/ecr/kubernetes-java/test-data/          
+          path: /mnt/m/ecr/kubernetes-java/test-data/
+          type: Directory  
       containers:
       - name: my-java-container
-        image: java-app:dev-local
+        image: java-app:dev-local-rancher
         volumeMounts:
         - name: persistent-data
           mountPath: /var/lib/my-data/
@@ -30,7 +31,7 @@ spec:
               name: myconfigmap
           - secretRef:
               name: mysecret
-        imagePullPolicy: Never #usar esto para docker desktop, de lo contrario intenta ir a docker.io
+        imagePullPolicy: IfNotPresent #usar esto para docker desktop, de lo contrario intenta ir a docker.io
         resources:
           limits:
             memory: 500M
