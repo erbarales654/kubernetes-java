@@ -18,7 +18,7 @@ spec:
       - name: persistent-data
         hostPath:
           # montando directorio local M:\ecr\kubernetes-java\test-data
-          path: /run/desktop/mnt/host/m/ecr/kubernetes-java/test-data/          
+          path: /test-data/
       containers:
       - name: my-java-container
         image: java-app:dev-local-minikube
