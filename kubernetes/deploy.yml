@@ -15,26 +15,26 @@ spec:
         app: my-java-app
     spec:
       volumes:
-      - name: persistent-data
-        hostPath:
-          # montando directorio local M:\ecr\kubernetes-java\test-data
-          path: /mnt/m/ecr/kubernetes-java/test-data/
-          type: Directory  
-      containers:
-      - name: my-java-container
-        image: java-app:dev-local-rancher
-        volumeMounts:
         - name: persistent-data
-          mountPath: /var/lib/my-data/
-        envFrom:
-          - configMapRef:
-              name: myconfigmap
-          - secretRef:
-              name: mysecret
-        imagePullPolicy: IfNotPresent
-        resources:
-          limits:
-            memory: 500M
-            cpu: "500m"
-        ports:
-        - containerPort: 8080
+          hostPath:
+            # montando directorio local M:\ecr\kubernetes-java\test-data
+            path: /mnt/m/trabajo/ecr/kubernetes-java/test-data/
+            type: Directory
+      containers:
+        - name: my-java-container
+          image: java-app:dev-local-rancher
+          volumeMounts:
+            - name: persistent-data
+              mountPath: /var/lib/my-data/
+          envFrom:
+            - configMapRef:
+                name: myconfigmap
+            - secretRef:
+                name: mysecret
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: 500M
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
