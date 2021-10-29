@@ -15,26 +15,29 @@ spec:
         app: my-java-app
     spec:
       volumes:
-      - name: persistent-data
-        hostPath:
-          # montando directorio local M:\ecr\kubernetes-java\test-data
-          # path: /run/desktop/mnt/host/m/ecr/kubernetes-java/test-data/ #docker-desktop
-          path: /test-data/ #minikube
-      containers:
-      - name: my-java-container
-        image: java-app:dev-local-minikube
-        volumeMounts:
         - name: persistent-data
-          mountPath: /var/lib/my-data/
-        envFrom:
-          - configMapRef:
-              name: myconfigmap
-          - secretRef:
-              name: mysecret
-        imagePullPolicy: Never #usar esto para docker desktop, de lo contrario intenta ir a docker.io
-        resources:
-          limits:
-            memory: 500M
-            cpu: "500m"
-        ports:
-        - containerPort: 8080
+          hostPath:
+            # montando directorio local M:\Trabajo\ecr\kubernetes-java\test-data\
+            path: /run/desktop/mnt/host/m/trabajo/ecr/kubernetes-java/test-data/ #docker-desktop
+            # path: /test-data/ #minikube
+            #path: /mnt/m/trabajo/ecr/kubernetes-java/test-data/ #rancher-desktop
+      containers:
+        - name: my-java-container
+          #image: java-app:dev-local-rancher
+          #image: java-app:dev-local-minikube
+          image: java-app:dev-local-docker-desktop
+          volumeMounts:
+            - name: persistent-data
+              mountPath: /var/lib/my-data/
+          envFrom:
+            - configMapRef:
+                name: myconfigmap
+            - secretRef:
+                name: mysecret
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: 500M
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
