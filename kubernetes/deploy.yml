@@ -15,11 +15,12 @@ spec:
         app: my-java-app
     spec:
       volumes:
-        - name: persistent-data
-          hostPath:
-            # montando directorio local M:\ecr\kubernetes-java\test-data
-            path: /mnt/m/trabajo/ecr/kubernetes-java/test-data/
-            type: Directory
+      - name: persistent-data
+        hostPath:
+          # montando directorio local M:\ecr\kubernetes-java\test-data
+          # path: /run/desktop/mnt/host/m/ecr/kubernetes-java/test-data/ #docker-desktop
+          # path: /test-data/ #minikube
+          path: /mnt/m/trabajo/ecr/kubernetes-java/test-data/ #rancher-desktop
       containers:
         - name: my-java-container
           image: java-app:dev-local-rancher
